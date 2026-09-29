@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SISGERED.API/SISGERED.API.csproj" />
+  <Project Path="SISGERED.shared/SISGERED.shared.csproj" />
+</Solution>
