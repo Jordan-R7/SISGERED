@@ -13,5 +13,6 @@ namespace SISGERED.shared.Entities
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public int ConjuntoResidencialId { get; set; }
+        public string NombreCompleto => $"{Nombre} {Apellido}";
     }
 }
