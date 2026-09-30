@@ -14,7 +14,7 @@ namespace SISGERED.shared.Entities
 
         public string direccion { get; set; }
 
-        //public int { get; set; } faltan los fk de admin 
+        public int AdministradorId { get; set; }
 
     }
 }
