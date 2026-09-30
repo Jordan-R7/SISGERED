@@ -8,5 +8,13 @@ namespace SISGERED.shared.Entities
     {
         public int Id { get; set; }
 
+        public string Name { get; set; } 
+        
+        public string telefono { get; set; } 
+
+        public string direccion { get; set; }
+
+        public int AdministradorId { get; set; }
+
     }
 }
