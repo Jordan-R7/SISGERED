@@ -4,7 +4,7 @@ namespace SISGERED.API.entidades
 {
     public class Empresaaeaxterna
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Display(Name = "Nombre")]
         [MaxLength(50, ErrorMessage = "El nombre no puede tener más de 50 caracteres")]
         [Required(ErrorMessage = "El nombre es obligatorio")]
