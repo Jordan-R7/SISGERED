@@ -19,13 +19,13 @@ namespace SISGERED.API.Controllers
         [HttpGet]
          public async Task<ActionResult> GetAsync()
         { 
-            return Ok(await _context.Residentes.ToListAsync());
+            return Ok(await _context.Administradores.ToListAsync());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
-            var administrador = await _context.Residentes.FirstOrDefaultAsync(x => x.Id == id);
+            var administrador = await _context.Administradores.FirstOrDefaultAsync(x => x.Id == id);
             if (administrador == null)
             {
                 return NotFound();
@@ -41,6 +41,29 @@ namespace SISGERED.API.Controllers
             return Ok(administrador);
         }
 
+
+        [HttpPut]
+        public async Task<ActionResult> Put(Administrador administrador)
+        {
+            _context.Update(administrador);
+            await _context.SaveChangesAsync();
+            return Ok(administrador);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var administrador = await _context.Administradores.FirstOrDefaultAsync(x => x.Id == id);
+            if (administrador == null)
+            {
+                return NotFound();
+            }
+
+            _context.Remove(administrador);
+            await _context.SaveChangesAsync();
+            return NoContent();
+
+        }
 
 
     }

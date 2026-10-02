@@ -42,5 +42,31 @@ namespace SISGERED.API.Controllers
             return Ok(conjuntoResidencial);
         }
 
+        [HttpPut]
+        public async Task<ActionResult> Put(ConjuntoResidencial conjuntoresidencial)
+        {
+            _context.Update(conjuntoresidencial);
+            await _context.SaveChangesAsync();
+            return Ok(conjuntoresidencial);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var conjuntoResidencial = await _context.ConjuntosResidenciales.FirstOrDefaultAsync(x => x.Id == id);
+            if (conjuntoResidencial == null)
+            {
+                return NotFound();
+            }
+
+             _context.Remove(conjuntoResidencial);
+            await _context.SaveChangesAsync();
+            return NoContent();
+
+        }
+
+
+
+
     }
 }
