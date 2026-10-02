@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SISGERED.shared.Entities
 {
@@ -29,6 +30,7 @@ namespace SISGERED.shared.Entities
         [RegularExpression(@"^[0-9\s]+$", ErrorMessage = "El teléfono debe tener solo números")]
         public string Telefono { get; set; }
 
+        [DataType(DataType.EmailAddress)]
         [Display(Name = "Correo electrónico")]
         [MaxLength(50, ErrorMessage = "El correo electrónico no puede tener más de 50 caracteres")]
         public string Correo { get; set; }
@@ -40,6 +42,10 @@ namespace SISGERED.shared.Entities
         [Display(Name = "Conjunto residencial")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public int ConjuntoResidencialId { get; set; }
+
+        [JsonIgnore]
+        public ConjuntoResidencial ConjuntoResidencial { get; set; }
+
 
         public string NombreCompleto => $"{Nombre} {Apellido}";
 

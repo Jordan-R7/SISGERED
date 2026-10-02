@@ -9,6 +9,12 @@ namespace SISGERED.API.Data
         {
         }
         public DbSet<Administrador> Administradores { get; set; }
+
+        public DbSet<Residente> Residentes { get; set; }
+
+        public DbSet<ConjuntoResidencial> ConjuntoResidenciales { get; set; }
+
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

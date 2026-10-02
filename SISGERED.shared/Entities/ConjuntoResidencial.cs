@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SISGERED.shared.Entities
 {
@@ -20,6 +21,11 @@ namespace SISGERED.shared.Entities
         public string direccion { get; set; }
 
         public int AdministradorId { get; set; }
+
+        [JsonIgnore]
+        public Administrador Administrador { get; set; }
+
+
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SISGERED.shared.Entities
 {
@@ -39,6 +40,8 @@ namespace SISGERED.shared.Entities
 
 
         public int ConjuntoResidencialId { get; set; }
+        [JsonIgnore]
+        public ConjuntoResidencial ConjuntoResidencial { get; set; }
 
 
         public string NombreCompleto => $"{Nombre} {Apellido}";
