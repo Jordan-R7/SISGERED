@@ -8,7 +8,7 @@ namespace SISGERED.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-        public DbSet<Administrador> Administradores { get; set; }
+        public DbSet<Administrador> Residentes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
