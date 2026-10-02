@@ -21,13 +21,13 @@ namespace SISGERED.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAsync()
         {
-            return Ok(await _context.Administradores.ToListAsync());
+            return Ok(await _context.Residentes.ToListAsync());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
-            var residente = await _context.Administradores.FirstOrDefaultAsync(x => x.Id == id);
+            var residente = await _context.Residentes.FirstOrDefaultAsync(x => x.Id == id);
             if (residente == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace SISGERED.API.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var residente = await _context.Administradores.FirstOrDefaultAsync(x => x.Id == id);
+            var residente = await _context.Residentes.FirstOrDefaultAsync(x => x.Id == id);
             if (residente == null)
             {
                 return NotFound();

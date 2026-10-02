@@ -12,14 +12,14 @@ namespace SISGERED.API.Data
 
         public DbSet<Residente> Residentes { get; set; }
 
-        public DbSet<ConjuntoResidencial> ConjuntoResidenciales { get; set; }
+        public DbSet<ConjuntoResidencial> ConjuntosResidenciales { get; set; }
 
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Administrador>().HasIndex(a => a.Cedula).IsUnique();
         }
-        public DbSet<ConjuntoResidencial> ConjuntosResidenciales { get; set; }
+        
     }
 }

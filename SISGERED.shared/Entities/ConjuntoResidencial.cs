@@ -14,11 +14,11 @@ namespace SISGERED.shared.Entities
         [Display(Name = "Teléfono")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [MaxLength(10, ErrorMessage = "El teléfono no puede tener más de 10 caracteres")]
-        public string telefono { get; set; }
+        public string Telefono { get; set; }
         [Display(Name = "Dirección")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [MaxLength(100, ErrorMessage = "La dirección no puede tener más de 100 caracteres")]
-        public string direccion { get; set; }
+        public string Direccion { get; set; }
 
         public int AdministradorId { get; set; }
 
