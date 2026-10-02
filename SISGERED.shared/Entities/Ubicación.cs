@@ -23,7 +23,18 @@ namespace SISGERED.shared.Entities
         [Display(Name = "Tipo de ubicación (Porteria, Ascensor, Fachada, Zona Común, otro)")]
         [MaxLength(30, ErrorMessage = "El campo no puede tener más de 30 caracteres.")]
         [Required(ErrorMessage = "El campo es obligatorio")]
-        public String TipoUbicacion{ get; set; }
-       
+        public String TipoUbicacion { get; set; } = null;
+
+        public bool Activa { get; set; } = true;
+
+
+        // R02: un conjunto tiene muchas ubicaciones
+        public int ConjuntoResidencialId { get; set; }  
+        public ConjuntoResidencial ConjuntoResidencial { get; set; } = null!;
+
+        // R18 y R05: una ubicación tiene muchas revisiones y muchos reportes
+        public ICollection<Revision> Revisiones { get; set; } = new List<Revision>();
+        public ICollection<Reporte> Reportes { get; set; } = new List<Reporte>();
     }
 }
+
