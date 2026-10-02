@@ -16,7 +16,7 @@ namespace SISGERED.shared.Entities
         public string Nombre { get; set; }
 
         [Display(Name = "Descripción de la ubicación")]
-        [MaxLength(200, ErrorMessage = "El campo no puede tener más de 200 caracteres.")]
+        [MaxLength(1000, ErrorMessage = "El campo no puede tener más de 200 caracteres.")]
         [Required(ErrorMessage = "El campo es obligatorio")]
         public string Descripcion {  get; set; }
 
