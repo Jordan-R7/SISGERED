@@ -83,11 +83,11 @@ namespace SISGERED.API.Data
             {
                 _context.Personal.Add(new personal
                 {
-                    Cedula = 987654321,
+                    Cedula = "987654321",
                     Nombre = "Juan",
                     Apellido = "Mantenimiento",
                     Email = "juan@mantenimiento.com",
-                    Telefono = 301234567,
+                    Telefono = "301234567",
                     Cargo = "Técnico de reparaciones"
                 });
                 await _context.SaveChangesAsync();
@@ -102,8 +102,8 @@ namespace SISGERED.API.Data
                 {
                     Nombre = "Ascensores Colombia S.A.",
                     Direccion = "Carrera 45 # 10-20",
-                    Telefono = 6049876,
-                    NET = "900.123.456-7",
+                    Telefono = "6049876",
+                    NIT = "900.123.456-7",
                     Email = "soporte@ascensores.com"
                 });
                 await _context.SaveChangesAsync();
