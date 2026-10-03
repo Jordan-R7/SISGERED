@@ -24,11 +24,10 @@ namespace SISGERED.shared.Entities
         public bool Activa { get; set; } = true;
 
 
-        // R02: un conjunto tiene muchas ubicaciones
         public int ConjuntoResidencialId { get; set; }  
         public ConjuntoResidencial ConjuntoResidencial { get; set; } = null!;
 
-        // R18 y R05: una ubicación tiene muchas revisiones y muchos reportes
+        
         public ICollection<Revision> Revisiones { get; set; } = new List<Revision>();
         public ICollection<Reporte> Reportes { get; set; } = new List<Reporte>();
     }

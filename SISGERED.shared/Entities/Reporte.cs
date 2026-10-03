@@ -21,22 +21,22 @@ namespace SISGERED.shared.Entities
 
 
 
-        // R05: todo reporte tiene ubicación
+      
         public int UbicacionId { get; set; }
         public Ubicacion Ubicacion { get; set; } = null!;
 
-        // R03 y R04: lo crea un residente O un miembro del personal
+   
         public int? ResidenteId { get; set; }
         public Residente? Residente { get; set; }
 
         public int? PersonalId { get; set; }
         public personal? Personal { get; set; }
 
-        // R07: opcionalmente originado por una revisión
+        
         public int? RevisionId { get; set; }
         public Revision? Revision { get; set; }
 
-        // R06 y R10: puede no tener intervención
+        
         public Intervension? Intervension { get; set; }
 
         
