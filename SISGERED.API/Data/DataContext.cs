@@ -48,6 +48,18 @@ namespace SISGERED.API.Data
             .HasCheckConstraint("CK_Intervencion_ResponsableExclusivo",
             "([ID_personal] IS NOT NULL AND [ID_Empresaexterna] IS NULL) OR ([ID_personal] IS NULL AND [ID_Empresaexterna] IS NOT NULL)");
 
+            modelBuilder.Entity<Intervension>()
+                .HasOne<personal>()
+                .WithMany()
+                .HasForeignKey(i => i.ID_personal)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Intervension>()
+                .HasOne<EmpresaExterna>()
+                .WithMany()
+                .HasForeignKey(i => i.ID_Empresaexterna)
+                .OnDelete(DeleteBehavior.Restrict);
+
             //prevencion de cascada de eliminacion para todas las relaciones
 
             var cascadeFKs = modelBuilder.Model.GetEntityTypes()
