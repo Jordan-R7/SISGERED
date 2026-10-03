@@ -2,7 +2,7 @@
 
 namespace SISGERED.API.entidades
 {
-    public class Empresaexterna
+    public class EmpresaExterna
     {
         public int Id { get; set; }
         [Display(Name = "Nombre")]

@@ -1,13 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SISGERED.API.Data;
 using Microsoft.EntityFrameworkCore;
+using SISGERED.API.Data;
+using SISGERED.API.entidades;
 using SISGERED.shared.Entities;
+
 namespace SISGERED.API.Controllers
 {
-    public class EmpresaExternaController : ControllerBase
+    [ApiController]
+    [Route("/api/empresasexternas")]
+    public class EmpresasExternasController : ControllerBase
     {
         private readonly DataContext _context;
-        public EmpresaExternaController(DataContext context)
+        public EmpresasExternasController(DataContext context)
         {
             _context = context;
         }

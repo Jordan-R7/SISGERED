@@ -21,6 +21,8 @@ namespace SISGERED.API.Data
         public DbSet<Ubicacion> Ubicaciones { get; set; }
         public DbSet<Reporte> Reportes { get; set; }
         public DbSet<Revision> Revisiones { get; set; }
+        public object Intervesiones { get; internal set; }
+        public object Intervensiones { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
