@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SISGERED.API.entidades;
 using SISGERED.shared.Entities; // Ajusta los usings si es necesario
-using System.Linq;
 
 namespace SISGERED.API.Data
 {
@@ -16,13 +14,13 @@ namespace SISGERED.API.Data
         public DbSet<Residente> Residentes { get; set; }
         public DbSet<ConjuntoResidencial> ConjuntosResidenciales { get; set; }
         public DbSet<personal> Personal { get; set; }
-        public DbSet<Empresaaeaxterna> EmpresasExternas { get; set; }
-        public DbSet<Intervecion> Intervenciones { get; set; }
+        public DbSet<EmpresaExterna> EmpresasExternas { get; set; }
+        public DbSet<Intervension> Intervensiones { get; set; }
         public DbSet<Ubicacion> Ubicaciones { get; set; }
         public DbSet<Reporte> Reportes { get; set; }
         public DbSet<Revision> Revisiones { get; set; }
-        public object Intervesiones { get; internal set; }
-        public object Intervensiones { get; internal set; }
+
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,8 +28,8 @@ namespace SISGERED.API.Data
 
           
             modelBuilder.Entity<personal>().ToTable("Personal");
-            modelBuilder.Entity<Intervecion>().ToTable("Intervenciones");
-            modelBuilder.Entity<Empresaaeaxterna>().ToTable("EmpresasExternas");
+            modelBuilder.Entity<Intervension>().ToTable("Intervensiones");
+            modelBuilder.Entity<EmpresaExterna>().ToTable("EmpresasExternas");
 
             
             modelBuilder.Entity<Administrador>().HasIndex(a => a.Cedula).IsUnique();
@@ -47,9 +45,21 @@ namespace SISGERED.API.Data
 
 
             // RN16: Una intervención no puede tener Empresa Externa y Personal a la vez
-            modelBuilder.Entity<Intervecion>()
-    .HasCheckConstraint("CK_Intervencion_ResponsableExclusivo",
-    "([ID_personal] IS NOT NULL AND [ID_Empresaexterna] IS NULL) OR ([ID_personal] IS NULL AND [ID_Empresaexterna] IS NOT NULL)");
+            modelBuilder.Entity<Intervension>()
+            .HasCheckConstraint("CK_Intervencion_ResponsableExclusivo",
+            "([ID_personal] IS NOT NULL AND [ID_Empresaexterna] IS NULL) OR ([ID_personal] IS NULL AND [ID_Empresaexterna] IS NOT NULL)");
+
+            modelBuilder.Entity<Intervension>()
+                .HasOne<personal>()
+                .WithMany()
+                .HasForeignKey(i => i.ID_personal)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Intervension>()
+                .HasOne<EmpresaExterna>()
+                .WithMany()
+                .HasForeignKey(i => i.ID_Empresaexterna)
+                .OnDelete(DeleteBehavior.Restrict);
 
             //prevencion de cascada de eliminacion para todas las relaciones
 
@@ -61,6 +71,23 @@ namespace SISGERED.API.Data
             {
                 fk.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            // Configuración de la relación entre Intervension y Administrador
+
+            modelBuilder.Entity<Intervension>()
+            .HasOne(i => i.Administrador)
+            .WithMany()
+            .HasForeignKey(i => i.ID_Administrador)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            // Configuración de la relación entre Intervension y Reporte
+            modelBuilder.Entity<Intervension>()
+            .HasOne(i => i.Reporte)
+            .WithOne(r => r.Intervension)
+            .HasForeignKey<Intervension>(i => i.ID_Reporte)
+            .OnDelete(DeleteBehavior.Restrict);
+
+
         }
     }
 }

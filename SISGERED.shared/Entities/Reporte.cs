@@ -1,12 +1,8 @@
-﻿using SISGERED.API.entidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SISGERED.shared.Entities
 {
-    public class Reporte
+    public class Reporte : IValidatableObject
     {
         public int Id { get; set; }
 
@@ -41,7 +37,22 @@ namespace SISGERED.shared.Entities
         public Revision? Revision { get; set; }
 
         // R06 y R10: puede no tener intervención
-        public Intervecion? Intervecion { get; set; }
+        public Intervension? Intervension { get; set; }
+
+        
+        public IEnumerable<ValidationResult> Validate(
+        ValidationContext validationContext)
+        {
+            if ((ResidenteId.HasValue && PersonalId.HasValue) ||
+                (!ResidenteId.HasValue && !PersonalId.HasValue))
+            {
+                yield return new ValidationResult(
+                    "El reporte debe estar asociado a un residente o a un miembro del personal, pero no a ambos.",
+                    new[] { nameof(ResidenteId), nameof(PersonalId) });
+            }
+
+
+        }
     }
 }
 

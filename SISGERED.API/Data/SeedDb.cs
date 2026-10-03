@@ -1,7 +1,4 @@
-﻿using SISGERED.API.entidades;
-using SISGERED.shared.Entities;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using SISGERED.shared.Entities;
 
 namespace SISGERED.API.Data
 {
@@ -54,7 +51,7 @@ namespace SISGERED.API.Data
                 {
                     _context.ConjuntosResidenciales.Add(new ConjuntoResidencial
                     {
-                        Name = "Conjunto Los Pinos",
+                        Nombre = "Conjunto Los Pinos",
                         Telefono = "6041234567",
                         Direccion = "Calle 123 # 45-67",
                         AdministradorId = admin.Id
@@ -68,7 +65,7 @@ namespace SISGERED.API.Data
         {
             if (!_context.Ubicaciones.Any())
             {
-                var conjunto = _context.ConjuntosResidenciales.FirstOrDefault(c => c.Name == "Conjunto Los Pinos");
+                var conjunto = _context.ConjuntosResidenciales.FirstOrDefault(c => c.Nombre == "Conjunto Los Pinos");
                 if (conjunto != null)
                 {
                     // Sembramos zonas comunes que siempre existen en un conjunto
@@ -101,7 +98,7 @@ namespace SISGERED.API.Data
         {
             if (!_context.EmpresasExternas.Any())
             {
-                _context.EmpresasExternas.Add(new Empresaaeaxterna
+                _context.EmpresasExternas.Add(new EmpresaExterna
                 {
                     Nombre = "Ascensores Colombia S.A.",
                     Direccion = "Carrera 45 # 10-20",
