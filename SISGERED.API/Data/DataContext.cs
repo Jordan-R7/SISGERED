@@ -42,12 +42,12 @@ namespace SISGERED.API.Data
                 .WithOne() // Se deja vacío porque Administrador no tiene la propiedad de vuelta
                 .HasForeignKey<ConjuntoResidencial>(c => c.AdministradorId);
 
-            
+
 
             // RN16: Una intervención no puede tener Empresa Externa y Personal a la vez
             modelBuilder.Entity<Intervecion>()
-                .HasCheckConstraint("CK_Intervencion_ResponsableExclusivo",
-                "([PersonalId] IS NOT NULL AND [EmpresaExternaId] IS NULL) OR ([PersonalId] IS NULL AND [EmpresaExternaId] IS NOT NULL)");
+    .HasCheckConstraint("CK_Intervencion_ResponsableExclusivo",
+    "([ID_personal] IS NOT NULL AND [ID_Empresaexterna] IS NULL) OR ([ID_personal] IS NULL AND [ID_Empresaexterna] IS NOT NULL)");
 
             //prevencion de cascada de eliminacion para todas las relaciones
 

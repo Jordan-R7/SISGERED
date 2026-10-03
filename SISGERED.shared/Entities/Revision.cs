@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SISGERED.API.entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -38,15 +39,15 @@ namespace SISGERED.shared.Entities
 
         // R17: una revisión pertenece a una única ubicación
         public int UbicacionId { get; set; }
-        public Ubicación Ubicacion { get; set; } = null!;
+        public Ubicacion Ubicacion { get; set; } = null!;
 
         // R19: realizada por un miembro del personal
         public int PersonalId { get; set; }
-        public Personal Personal { get; set; } = null!;
+        public personal Personal { get; set; } = null!;
 
         // R22: opcionalmente verifica una intervención
         public int? IntervencionId { get; set; }
-        public Intervencion? Intervencion { get; set; }
+        public Intervecion? Intervencion { get; set; }
 
         // R07 y R21: puede dar lugar a cero o varios reportes
         public ICollection<Reporte> Reportes { get; set; } = new List<Reporte>();

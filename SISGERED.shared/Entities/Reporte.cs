@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SISGERED.API.entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -26,21 +27,21 @@ namespace SISGERED.shared.Entities
 
         // R05: todo reporte tiene ubicación
         public int UbicacionId { get; set; }
-        public Ubicación Ubicacion { get; set; } = null!;
+        public Ubicacion Ubicacion { get; set; } = null!;
 
         // R03 y R04: lo crea un residente O un miembro del personal
         public int? ResidenteId { get; set; }
         public Residente? Residente { get; set; }
 
         public int? PersonalId { get; set; }
-        public Personal? Personal { get; set; }
+        public personal? Personal { get; set; }
 
         // R07: opcionalmente originado por una revisión
         public int? RevisionId { get; set; }
         public Revision? Revision { get; set; }
 
         // R06 y R10: puede no tener intervención
-        public Intervencion? Intervencion { get; set; }
+        public Intervecion? Intervecion { get; set; }
     }
 }
 

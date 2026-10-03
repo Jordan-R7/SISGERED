@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SISGERED.shared.Entities
 {
-    public class Ubicación
+    public class Ubicacion
     {
         public int Id { get; set; }
 
