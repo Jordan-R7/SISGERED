@@ -2,7 +2,7 @@
 
 namespace SISGERED.shared.Entities
 {
-    public class Reporte
+    public class Reporte : IValidatableObject
     {
         public int Id { get; set; }
 
@@ -38,6 +38,21 @@ namespace SISGERED.shared.Entities
 
         // R06 y R10: puede no tener intervención
         public Intervension? Intervension { get; set; }
+
+        
+        public IEnumerable<ValidationResult> Validate(
+        ValidationContext validationContext)
+        {
+            if ((ResidenteId.HasValue && PersonalId.HasValue) ||
+                (!ResidenteId.HasValue && !PersonalId.HasValue))
+            {
+                yield return new ValidationResult(
+                    "El reporte debe estar asociado a un residente o a un miembro del personal, pero no a ambos.",
+                    new[] { nameof(ResidenteId), nameof(PersonalId) });
+            }
+
+
+        }
     }
 }
 
