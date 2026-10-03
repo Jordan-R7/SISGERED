@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SISGERED.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddTransient<SeedDb>();
 
 // Add services to the container.
 
@@ -14,6 +15,18 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=DefaultConn
 
 
 var app = builder.Build();
+SeedData(app);
+
+void SeedData(WebApplication app)
+{
+    IServiceScopeFactory scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (IServiceScope scope = scopedFactory!.CreateScope())
+    {
+        SeedDb service = scope.ServiceProvider.GetService<SeedDb>();
+        service!.SeedDbAsync().Wait();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
