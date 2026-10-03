@@ -19,6 +19,7 @@ namespace SISGERED.API.Data
         public DbSet<Ubicacion> Ubicaciones { get; set; }
         public DbSet<Reporte> Reportes { get; set; }
         public DbSet<Revision> Revisiones { get; set; }
+
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -70,6 +71,23 @@ namespace SISGERED.API.Data
             {
                 fk.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            // Configuración de la relación entre Intervension y Administrador
+
+            modelBuilder.Entity<Intervension>()
+            .HasOne(i => i.Administrador)
+            .WithMany()
+            .HasForeignKey(i => i.ID_Administrador)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            // Configuración de la relación entre Intervension y Reporte
+            modelBuilder.Entity<Intervension>()
+            .HasOne(i => i.Reporte)
+            .WithOne(r => r.Intervension)
+            .HasForeignKey<Intervension>(i => i.ID_Reporte)
+            .OnDelete(DeleteBehavior.Restrict);
+
+
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SISGERED.shared.Entities
 {
-    public class Intervension
+    public class Intervension : IValidatableObject
     {
         public int Id { get; set; }
 
@@ -17,11 +17,12 @@ namespace SISGERED.shared.Entities
         [Display(Name = "Reporte")]
         [Required(ErrorMessage = "El ID del reporte es obligatorio")]
         public int ID_Reporte { get; set; }
-
+        public Reporte Reporte { get; set; }
 
         [Display(Name = "Administrador")]
         [Required(ErrorMessage = "El ID del administrador es obligatorio")]
         public int ID_Administrador { get; set; }
+        public Administrador Administrador { get; set; }
 
 
         [Display(Name = "Fecha de Inicio")]
@@ -56,17 +57,18 @@ namespace SISGERED.shared.Entities
             {
                 yield return new ValidationResult(
                 "La fecha de fin debe ser mayor que la fecha de inicio",
-                new[] { nameof(Fechafin) });
+                [nameof(Fechafin)]);
             }
 
             if (FechaProgramada < DateOnly.FromDateTime(DateTime.Today))
             {
                 yield return new ValidationResult(
                 "La fecha programada no puede ser menor que la fecha actual",
-                new[] { nameof(FechaProgramada) });
+                [nameof(FechaProgramada)]);
             }
         }
 
+        
 
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SISGERED.API.Data;
-using SISGERED.API.entidades;
 using SISGERED.shared.Entities;
 
 namespace SISGERED.API.Controllers

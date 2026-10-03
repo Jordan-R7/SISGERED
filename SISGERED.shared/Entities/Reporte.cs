@@ -37,7 +37,7 @@ namespace SISGERED.shared.Entities
         public Revision? Revision { get; set; }
 
         // R06 y R10: puede no tener intervención
-        public Intervecion? Intervecion { get; set; }
+        public Intervension? Intervension { get; set; }
     }
 }
 
