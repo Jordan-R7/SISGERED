@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using SISGERED.API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddTransient<SeedDb>();
 
 // Add services to the container.
 
@@ -6,7 +10,23 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=DefaultConnection"));
+
+
+
 var app = builder.Build();
+SeedData(app);
+
+void SeedData(WebApplication app)
+{
+    IServiceScopeFactory scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (IServiceScope scope = scopedFactory!.CreateScope())
+    {
+        SeedDb service = scope.ServiceProvider.GetService<SeedDb>();
+        service!.SeedDbAsync().Wait();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
