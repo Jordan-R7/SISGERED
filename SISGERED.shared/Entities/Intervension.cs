@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SISGERED.API.entidades
+namespace SISGERED.shared.Entities
 {
     public class Intervension
     {
@@ -37,7 +37,7 @@ namespace SISGERED.API.entidades
         [Required(ErrorMessage = "La prioridad es obligatoria")]
         public string Prioridad { get; set; }
         public IEnumerable<ValidationResult> Validate(
-ValidationContext validationContext)
+            ValidationContext validationContext)
         {
             if (Fechafin <= Fechainicio)
             {

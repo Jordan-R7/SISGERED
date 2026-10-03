@@ -2,6 +2,7 @@
 using SISGERED.API.Data;
 using Microsoft.EntityFrameworkCore;
 using SISGERED.shared.Entities;
+
 namespace SISGERED.API.Controllers
 {
     [ApiController]

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SISGERED.API.entidades
+namespace SISGERED.shared.Entities
 {
     public class personal
     {
