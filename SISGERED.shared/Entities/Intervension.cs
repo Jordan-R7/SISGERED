@@ -2,9 +2,9 @@
 
 namespace SISGERED.API.entidades
 {
-    public class Intervecion
+    public class Intervension
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Display(Name = "Personal")]
         [Required(ErrorMessage = "El ID del personal es obligatorio")]
         

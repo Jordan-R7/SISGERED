@@ -4,7 +4,7 @@ namespace SISGERED.API.entidades
 {
     public class personal
     {
-        public int ID_personal { get; set; }
+        public int Id { get; set; }
         [Display(Name = "Cédula") ]
         [MaxLength(11, ErrorMessage = "La cédula no puede tener más de 11 dígitos")]
         [Required(ErrorMessage = "La cédula es obligatoria")]
