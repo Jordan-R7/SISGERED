@@ -100,10 +100,10 @@ namespace SISGERED.API.Data
             {
                 _context.EmpresasExternas.Add(new EmpresaExterna
                 {
-                    Nombre = "Ascensores Colombia S.A.",
+                    Nombre = "Ascensores Colombia SA",
                     Direccion = "Carrera 45 # 10-20",
-                    Telefono = "6049876",
-                    NIT = "900.123.456-7",
+                    Telefono = "3102565897",
+                    NIT = "9001234567",
                     Email = "soporte@ascensores.com"
                 });
                 await _context.SaveChangesAsync();
