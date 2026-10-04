@@ -1,7 +1,4 @@
-﻿using SISGERED.API.entidades;
-using SISGERED.shared.Entities;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using SISGERED.shared.Entities;
 
 namespace SISGERED.API.Data
 {
@@ -54,7 +51,7 @@ namespace SISGERED.API.Data
                 {
                     _context.ConjuntosResidenciales.Add(new ConjuntoResidencial
                     {
-                        Name = "Conjunto Los Pinos",
+                        Nombre = "Conjunto Los Pinos",
                         Telefono = "6041234567",
                         Direccion = "Calle 123 # 45-67",
                         AdministradorId = admin.Id
@@ -68,7 +65,7 @@ namespace SISGERED.API.Data
         {
             if (!_context.Ubicaciones.Any())
             {
-                var conjunto = _context.ConjuntosResidenciales.FirstOrDefault(c => c.Name == "Conjunto Los Pinos");
+                var conjunto = _context.ConjuntosResidenciales.FirstOrDefault(c => c.Nombre == "Conjunto Los Pinos");
                 if (conjunto != null)
                 {
                     // Sembramos zonas comunes que siempre existen en un conjunto
@@ -86,11 +83,11 @@ namespace SISGERED.API.Data
             {
                 _context.Personal.Add(new personal
                 {
-                    Cedula = 987654321,
+                    Cedula = "987654321",
                     Nombre = "Juan",
                     Apellido = "Mantenimiento",
                     Email = "juan@mantenimiento.com",
-                    Telefono = 301234567,
+                    Telefono = "3012345671",
                     Cargo = "Técnico de reparaciones"
                 });
                 await _context.SaveChangesAsync();
@@ -101,12 +98,12 @@ namespace SISGERED.API.Data
         {
             if (!_context.EmpresasExternas.Any())
             {
-                _context.EmpresasExternas.Add(new Empresaaeaxterna
+                _context.EmpresasExternas.Add(new EmpresaExterna
                 {
-                    Nombre = "Ascensores Colombia S.A.",
+                    Nombre = "Ascensores Colombia SA",
                     Direccion = "Carrera 45 # 10-20",
-                    Telefono = 6049876,
-                    NET = "900.123.456-7",
+                    Telefono = "3102565897",
+                    NIT = "9001234567",
                     Email = "soporte@ascensores.com"
                 });
                 await _context.SaveChangesAsync();

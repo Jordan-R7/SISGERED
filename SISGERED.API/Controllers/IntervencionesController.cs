@@ -2,14 +2,15 @@
 using SISGERED.API.Data;
 using Microsoft.EntityFrameworkCore;
 using SISGERED.shared.Entities;
+
 namespace SISGERED.API.Controllers
 {
     [ApiController]
-    [Route("/api/personal")]
-    public class PersonalControllers : ControllerBase
+    [Route("/api/intervenciones")]
+    public class IntervencionesController : ControllerBase
     {
         private readonly DataContext _context;
-        public PersonalControllers (DataContext context)
+        public IntervencionesController(DataContext context)
         {
             _context = context;
         }
@@ -17,47 +18,47 @@ namespace SISGERED.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAsync()
         {
-            return Ok(await _context.Personal.ToListAsync());
+            return Ok(await _context.Intervenciones.ToListAsync());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
-            var personal = await _context.Personal.FirstOrDefaultAsync(x => x.Id == id);
-            if (personal == null)
+            var intervencion = await _context.Intervenciones.FirstOrDefaultAsync(x => x.Id == id);
+            if (intervencion == null)
             {
                 return NotFound();
             }
-            return Ok(personal);
+            return Ok(intervencion);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(personal personal)
+        public async Task<ActionResult> Post(Intervencion intervencion)
         {
-            _context.Add(personal);
+            _context.Add(intervencion);
             await _context.SaveChangesAsync();
-            return Ok(personal);
+            return Ok(intervencion);
         }
 
 
         [HttpPut]
-        public async Task<ActionResult> Put(personal personal)
+        public async Task<ActionResult> Put(Intervencion intervencion)
         {
-            _context.Update(personal);
+            _context.Update(intervencion);
             await _context.SaveChangesAsync();
-            return Ok(personal);
+            return Ok(intervencion);
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var personal = await _context.Personal.FirstOrDefaultAsync(x => x.Id == id);
-            if (personal == null)
+            var intervencion = await _context.Intervenciones.FirstOrDefaultAsync(x => x.Id == id);
+            if (intervencion == null)
             {
                 return NotFound();
             }
 
-            _context.Remove(personal);
+            _context.Remove(intervencion);
             await _context.SaveChangesAsync();
             return NoContent();
 
@@ -66,4 +67,5 @@ namespace SISGERED.API.Controllers
 
     }
 }
+
 

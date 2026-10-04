@@ -24,7 +24,7 @@ namespace SISGERED.shared.Entities
         [Display(Name = "Apellido")]
         [MaxLength(50, ErrorMessage = "El apellido no puede tener más de 50 caracteres")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "El nombre debe tener solo letras")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "El apellido debe tener solo letras")]
         public string Apellido { get; set; }
 
 

@@ -2,14 +2,16 @@
 using SISGERED.API.Data;
 using Microsoft.EntityFrameworkCore;
 using SISGERED.shared.Entities;
+
 namespace SISGERED.API.Controllers
 {
     [ApiController]
-    [Route("/api/personal")]
-    public class PersonalControllers : ControllerBase
+    [Route("/api/reportes")]
+    public class ReportesController : ControllerBase
     {
         private readonly DataContext _context;
-        public PersonalControllers (DataContext context)
+
+        public ReportesController(DataContext context)
         {
             _context = context;
         }
@@ -17,53 +19,50 @@ namespace SISGERED.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAsync()
         {
-            return Ok(await _context.Personal.ToListAsync());
+            return Ok(await _context.Reportes.ToListAsync());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
-            var personal = await _context.Personal.FirstOrDefaultAsync(x => x.Id == id);
-            if (personal == null)
+            var Reportes = await _context.Reportes.FirstOrDefaultAsync(x => x.Id == id);
+            if (Reportes == null)
             {
                 return NotFound();
             }
-            return Ok(personal);
+            return Ok(Reportes);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(personal personal)
+        public async Task<ActionResult> Post(Reporte reportes)
         {
-            _context.Add(personal);
+            _context.Add(reportes);
             await _context.SaveChangesAsync();
-            return Ok(personal);
+            return Ok(reportes);
         }
 
-
         [HttpPut]
-        public async Task<ActionResult> Put(personal personal)
+        public async Task<ActionResult> Put(Reporte reportes)
         {
-            _context.Update(personal);
+            _context.Update(reportes);
             await _context.SaveChangesAsync();
-            return Ok(personal);
+            return Ok(reportes);
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var personal = await _context.Personal.FirstOrDefaultAsync(x => x.Id == id);
-            if (personal == null)
+            var Reportes = await _context.Reportes.FirstOrDefaultAsync(x => x.Id == id);
+            if (Reportes == null)
             {
                 return NotFound();
             }
 
-            _context.Remove(personal);
+            _context.Remove(Reportes);
             await _context.SaveChangesAsync();
             return NoContent();
 
+
         }
-
-
     }
 }
-

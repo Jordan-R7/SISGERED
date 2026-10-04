@@ -10,7 +10,7 @@ namespace SISGERED.shared.Entities
         [Display(Name = "Nombre del conjunto residencial")]
         [MaxLength(50, ErrorMessage = "El nombre del conjunto residencial no puede tener más de 50 caracteres")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        public string Name { get; set; }
+        public string Nombre { get; set; }
         [Display(Name = "Teléfono")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [MaxLength(10, ErrorMessage = "El teléfono no puede tener más de 10 caracteres")]
