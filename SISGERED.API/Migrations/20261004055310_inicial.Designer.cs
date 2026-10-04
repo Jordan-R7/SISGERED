@@ -12,7 +12,7 @@ using SISGERED.API.Data;
 namespace SISGERED.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20261003034629_inicial")]
+    [Migration("20261004055310_inicial")]
     partial class inicial
     {
         /// <inheritdoc />
