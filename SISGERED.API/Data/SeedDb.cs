@@ -87,7 +87,7 @@ namespace SISGERED.API.Data
                     Nombre = "Juan",
                     Apellido = "Mantenimiento",
                     Email = "juan@mantenimiento.com",
-                    Telefono = "301234567",
+                    Telefono = "3012345671",
                     Cargo = "Técnico de reparaciones"
                 });
                 await _context.SaveChangesAsync();
