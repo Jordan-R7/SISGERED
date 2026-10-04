@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SISGERED.API.Data;
 using Microsoft.EntityFrameworkCore;
+using SISGERED.API.Data;
+using SISGERED.API.entidades;
 using SISGERED.shared.Entities;
 namespace SISGERED.API.Controllers
 {
@@ -30,7 +31,7 @@ namespace SISGERED.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(EmpresaExterna empresaexterna)
+        public async Task<ActionResult> Post(Empresaaeaxterna empresaexterna)
         {
             _context.Add(empresaexterna);
             await _context.SaveChangesAsync();
@@ -39,7 +40,7 @@ namespace SISGERED.API.Controllers
 
 
         [HttpPut]
-        public async Task<ActionResult> Put(EmpresaExterna empresaexterna)
+        public async Task<ActionResult> Put(Empresaaeaxterna empresaexterna)
         {
             _context.Update(empresaexterna);
             await _context.SaveChangesAsync();

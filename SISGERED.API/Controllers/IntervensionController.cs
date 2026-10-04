@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SISGERED.API.Data;
 using Microsoft.EntityFrameworkCore;
+using SISGERED.API.Data;
+using SISGERED.API.entidades;
 using SISGERED.shared.Entities;
 namespace SISGERED.API.Controllers
 {
@@ -16,13 +17,13 @@ namespace SISGERED.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAsync()
         {
-            return Ok(await _context.Interveciones.ToListAsync());
+            return Ok(await _context.Intervenciones.ToListAsync());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
-            var intervecion = await _context.Interveciones.FirstOrDefaultAsync(x => x.Id == id);
+            var intervecion = await _context.Intervenciones.FirstOrDefaultAsync(x => x.Id == id);
             if (intervecion == null)
             {
                 return NotFound();
@@ -50,7 +51,7 @@ namespace SISGERED.API.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var intervecion = await _context.Interveciones.FirstOrDefaultAsync(x => x.Id == id);
+            var intervecion = await _context.Intervenciones.FirstOrDefaultAsync(x => x.Id == id);
             if (intervecion == null)
             {
                 return NotFound();
