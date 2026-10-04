@@ -34,20 +34,18 @@ namespace SISGERED.API.Data
             
             modelBuilder.Entity<Administrador>().HasIndex(a => a.Cedula).IsUnique();
 
-            
-
             // RN01: Relación 1:1 entre ConjuntoResidencial y Administrador
             modelBuilder.Entity<ConjuntoResidencial>()
                 .HasOne(c => c.Administrador)
                 .WithOne() // Se deja vacío porque Administrador no tiene la propiedad de vuelta
                 .HasForeignKey<ConjuntoResidencial>(c => c.AdministradorId);
 
-
-
             // RN16: Una intervención no puede tener Empresa Externa y Personal a la vez
             modelBuilder.Entity<Intervencion>()
-            .HasCheckConstraint("CK_Intervencion_ResponsableExclusivo",
-            "([ID_personal] IS NOT NULL AND [ID_Empresaexterna] IS NULL) OR ([ID_personal] IS NULL AND [ID_Empresaexterna] IS NOT NULL)");
+            .ToTable(t => t.HasCheckConstraint(
+                "CK_Intervencion_ResponsableExclusivo",
+                "([ID_personal] IS NOT NULL AND [ID_Empresaexterna] IS NULL) OR ([ID_personal] IS NULL AND [ID_Empresaexterna] IS NOT NULL)"
+            ));
 
             modelBuilder.Entity<Intervencion>()
                 .HasOne<personal>()
