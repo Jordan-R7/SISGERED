@@ -6,12 +6,12 @@ using SISGERED.shared.Entities;
 namespace SISGERED.API.Controllers
 {
     [ApiController]
-    [Route("/api/ubicaciones")]
-    public class UbicacionController : ControllerBase
+    [Route("/api/revisiones")]
+    public class RevisionesController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public UbicacionController(DataContext context)
+        public RevisionesController(DataContext context)
         {
             _context = context;
         }
@@ -19,48 +19,49 @@ namespace SISGERED.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAsync()
         {
-            return Ok(await _context.Ubicaciones.ToListAsync());
+            return Ok(await _context.Revisiones.ToListAsync());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
-            var ubicacion = await _context.Ubicaciones.FirstOrDefaultAsync(x => x.Id == id);
-            if (ubicacion == null)
+            var Revisiones = await _context.Revisiones.FirstOrDefaultAsync(x => x.Id == id);
+            if (Revisiones == null)
             {
                 return NotFound();
             }
-            return Ok(ubicacion);
+            return Ok(Revisiones);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(Ubicacion ubicacion)
+        public async Task<ActionResult> Post(Revision revision)
         {
-            _context.Add(ubicacion);
+            _context.Add(revision);
             await _context.SaveChangesAsync();
-            return Ok(ubicacion);
+            return Ok(revision);
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put(Ubicacion ubicacion)
+        public async Task<ActionResult> Put(Revision revision)
         {
-            _context.Update(ubicacion);
+            _context.Update(revision);
             await _context.SaveChangesAsync();
-            return Ok(ubicacion);
+            return Ok(revision);
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var ubicacion = await _context.Ubicaciones.FirstOrDefaultAsync(x => x.Id == id);
-            if (ubicacion == null)
+            var Revisiones = await _context.Revisiones.FirstOrDefaultAsync(x => x.Id == id);
+            if (Revisiones == null)
             {
                 return NotFound();
             }
 
-            _context.Remove(ubicacion);
+            _context.Remove(Revisiones);
             await _context.SaveChangesAsync();
             return NoContent();
+
 
         }
     }
