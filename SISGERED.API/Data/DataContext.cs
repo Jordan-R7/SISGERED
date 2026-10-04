@@ -28,7 +28,7 @@ namespace SISGERED.API.Data
 
           
             modelBuilder.Entity<personal>().ToTable("Personal");
-            modelBuilder.Entity<Intervencion>().ToTable("Intervensiones");
+            modelBuilder.Entity<Intervencion>().ToTable("Intervenciones");
             modelBuilder.Entity<EmpresaExterna>().ToTable("EmpresasExternas");
 
             
@@ -72,7 +72,7 @@ namespace SISGERED.API.Data
                 fk.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
-            // Configuración de la relación entre Intervension y Administrador
+            // Configuración de la relación entre Intervencion y Administrador
 
             modelBuilder.Entity<Intervencion>()
             .HasOne(i => i.Administrador)
@@ -80,10 +80,10 @@ namespace SISGERED.API.Data
             .HasForeignKey(i => i.ID_Administrador)
             .OnDelete(DeleteBehavior.Restrict);
 
-            // Configuración de la relación entre Intervension y Reporte
+            // Configuración de la relación entre Intervencion y Reporte
             modelBuilder.Entity<Intervencion>()
             .HasOne(i => i.Reporte)
-            .WithOne(r => r.Intervension)
+            .WithOne(r => r.Intervencion)
             .HasForeignKey<Intervencion>(i => i.ID_Reporte)
             .OnDelete(DeleteBehavior.Restrict);
 

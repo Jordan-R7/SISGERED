@@ -45,7 +45,7 @@ namespace SISGERED.shared.Entities
 
         // R22: opcionalmente verifica una intervención
         public int? IntervencionId { get; set; }
-        public Intervencion? Intervension { get; set; }
+        public Intervencion? Intervencion { get; set; }
 
         // R07 y R21: puede dar lugar a cero o varios reportes
         public ICollection<Reporte> Reportes { get; set; } = new List<Reporte>();
