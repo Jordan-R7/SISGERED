@@ -24,12 +24,12 @@ namespace SISGERED.API.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
-            var intervension = await _context.Intervenciones.FirstOrDefaultAsync(x => x.Id == id);
-            if (intervension == null)
+            var intervencion = await _context.Intervenciones.FirstOrDefaultAsync(x => x.Id == id);
+            if (intervencion == null)
             {
                 return NotFound();
             }
-            return Ok(intervension);
+            return Ok(intervencion);
         }
 
         [HttpPost]
