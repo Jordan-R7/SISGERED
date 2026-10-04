@@ -6,11 +6,11 @@ using SISGERED.shared.Entities;
 namespace SISGERED.API.Controllers
 {
     [ApiController]
-    [Route("/api/intervensiones")]
-    public class IntervensionesController : ControllerBase
+    [Route("/api/intervenciones")]
+    public class IntervencionesController : ControllerBase
     {
         private readonly DataContext _context;
-        public IntervensionesController(DataContext context)
+        public IntervencionesController(DataContext context)
         {
             _context = context;
         }
@@ -18,13 +18,13 @@ namespace SISGERED.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAsync()
         {
-            return Ok(await _context.Intervensiones.ToListAsync());
+            return Ok(await _context.Intervenciones.ToListAsync());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
-            var intervension = await _context.Intervensiones.FirstOrDefaultAsync(x => x.Id == id);
+            var intervension = await _context.Intervenciones.FirstOrDefaultAsync(x => x.Id == id);
             if (intervension == null)
             {
                 return NotFound();
@@ -33,32 +33,32 @@ namespace SISGERED.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(Intervension intervension)
+        public async Task<ActionResult> Post(Intervencion intervencion)
         {
-            _context.Add(intervension);
+            _context.Add(intervencion);
             await _context.SaveChangesAsync();
-            return Ok(intervension);
+            return Ok(intervencion);
         }
 
 
         [HttpPut]
-        public async Task<ActionResult> Put(Intervension intervension)
+        public async Task<ActionResult> Put(Intervencion intervencion)
         {
-            _context.Update(intervension);
+            _context.Update(intervencion);
             await _context.SaveChangesAsync();
-            return Ok(intervension);
+            return Ok(intervencion);
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var intervension = await _context.Intervensiones.FirstOrDefaultAsync(x => x.Id == id);
-            if (intervension == null)
+            var intervencion = await _context.Intervenciones.FirstOrDefaultAsync(x => x.Id == id);
+            if (intervencion == null)
             {
                 return NotFound();
             }
 
-            _context.Remove(intervension);
+            _context.Remove(intervencion);
             await _context.SaveChangesAsync();
             return NoContent();
 

@@ -2,7 +2,7 @@
 
 namespace SISGERED.shared.Entities
 {
-    public class Intervension : IValidatableObject
+    public class Intervencion : IValidatableObject
     {
         public int Id { get; set; }
 

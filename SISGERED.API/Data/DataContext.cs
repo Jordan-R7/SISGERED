@@ -15,7 +15,7 @@ namespace SISGERED.API.Data
         public DbSet<ConjuntoResidencial> ConjuntosResidenciales { get; set; }
         public DbSet<personal> Personal { get; set; }
         public DbSet<EmpresaExterna> EmpresasExternas { get; set; }
-        public DbSet<Intervension> Intervensiones { get; set; }
+        public DbSet<Intervencion> Intervenciones { get; set; }
         public DbSet<Ubicacion> Ubicaciones { get; set; }
         public DbSet<Reporte> Reportes { get; set; }
         public DbSet<Revision> Revisiones { get; set; }
@@ -28,7 +28,7 @@ namespace SISGERED.API.Data
 
           
             modelBuilder.Entity<personal>().ToTable("Personal");
-            modelBuilder.Entity<Intervension>().ToTable("Intervensiones");
+            modelBuilder.Entity<Intervencion>().ToTable("Intervensiones");
             modelBuilder.Entity<EmpresaExterna>().ToTable("EmpresasExternas");
 
             
@@ -45,17 +45,17 @@ namespace SISGERED.API.Data
 
 
             // RN16: Una intervención no puede tener Empresa Externa y Personal a la vez
-            modelBuilder.Entity<Intervension>()
+            modelBuilder.Entity<Intervencion>()
             .HasCheckConstraint("CK_Intervencion_ResponsableExclusivo",
             "([ID_personal] IS NOT NULL AND [ID_Empresaexterna] IS NULL) OR ([ID_personal] IS NULL AND [ID_Empresaexterna] IS NOT NULL)");
 
-            modelBuilder.Entity<Intervension>()
+            modelBuilder.Entity<Intervencion>()
                 .HasOne<personal>()
                 .WithMany()
                 .HasForeignKey(i => i.ID_personal)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Intervension>()
+            modelBuilder.Entity<Intervencion>()
                 .HasOne<EmpresaExterna>()
                 .WithMany()
                 .HasForeignKey(i => i.ID_Empresaexterna)
@@ -74,17 +74,17 @@ namespace SISGERED.API.Data
 
             // Configuración de la relación entre Intervension y Administrador
 
-            modelBuilder.Entity<Intervension>()
+            modelBuilder.Entity<Intervencion>()
             .HasOne(i => i.Administrador)
             .WithMany()
             .HasForeignKey(i => i.ID_Administrador)
             .OnDelete(DeleteBehavior.Restrict);
 
             // Configuración de la relación entre Intervension y Reporte
-            modelBuilder.Entity<Intervension>()
+            modelBuilder.Entity<Intervencion>()
             .HasOne(i => i.Reporte)
             .WithOne(r => r.Intervension)
-            .HasForeignKey<Intervension>(i => i.ID_Reporte)
+            .HasForeignKey<Intervencion>(i => i.ID_Reporte)
             .OnDelete(DeleteBehavior.Restrict);
 
 
